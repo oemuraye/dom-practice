@@ -8,6 +8,22 @@
     <script defer src="script.js"></script>
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About Us</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-section image-slider">
+        <button id="prev-button">Previous</button>
+        <img id="slider-image" src="./images/image1.jpg" alt="Image Slider">
+        <button id="next-button">Next</button>
+    </section>
+
     <h1>DOM Practice</h1>
 
     <section class="area-of-rect">
@@ -48,6 +64,15 @@
 
         <h4><span class="validation-result"></span></h4>
     </section>
-    
+
+    <!-- API response print -->
+    <section class="api-response">
+        <h3>API Response</h3>
+        <div id="api-data"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Our Website. All rights reserved.</p>    
+    </footer>
 </body>
 </html>

@@ -48,3 +48,137 @@ ageInput.addEventListener('input', function() {
 
 });
 
+// gimme an example of foreach and for loop
+const numbers = [1, 2, 3, 4, 5];
+
+// using for loop
+for (let i = 0; i < numbers.length; i++) {
+    // console.log("For loop: " + numbers[i]);
+}
+
+// use while loop too
+let j = 0;
+while (j < numbers.length) {
+    // console.log("While loop: " + numbers[j]);
+    j++;
+}
+
+// using foreach
+numbers.forEach(function(number) {
+    // console.log("For each: " + number);
+});
+
+// can map be used too
+const squaredNumbers = numbers.map(function(number) {
+    return number * number;
+});
+
+// console.log("Squared numbers: " + squaredNumbers);
+
+// examples of js methods to loop objects
+const person = {
+    name: "John",
+    age: 30,
+    city: "New York"
+};
+// using for in loop
+for (let key in person) {
+    // console.log(key + ": " + person[key]);
+}
+
+// using Object.keys
+Object.keys(person).forEach(function(key) {
+    // console.log(key + ": " + person[key]);
+});
+// what does oject.keys return
+// Object.keys returns an array of the keys of the object. In this case, it would return ["name", "age", "city"].
+
+
+// using Object.values
+Object.values(person).forEach(function(value) {
+    // console.log(value);
+});
+
+// can you use Object.entries
+Object.entries(person).forEach(function([key, value]) {
+    // console.log(key + ": " + value);
+});
+
+
+// can you use foreach on an object
+// no, foreach is for arrays, but you can convert the object to an array using Object.entries or Object.keys or Object.values and then use foreach on that array.
+// how about map on an object
+// no, map is also for arrays, but you can convert the object to an array using Object.entries or Object.keys or Object.values and then use map on that array.
+
+// i need a simple image slider using js
+const images = [
+    "./images/image1.jpg",
+    "./images/image2.jpg",
+    "./images/image3.jpg"
+];
+
+// console.log(images[0]);
+
+
+let currentImageIndex = 0;
+const sliderImage = document.getElementById('slider-image');
+const prevButton = document.getElementById('prev-button');
+const nextButton = document.getElementById('next-button');
+function showImage(index) {
+    sliderImage.src = images[index];
+}
+prevButton.addEventListener('click', function() {
+    // currentImageIndex = currentImageIndex - 1;
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    // what does the above line do
+    // the above line updates the currentImageIndex to the previous index in the images array. It uses the modulo operator to wrap around to the end of the array if the index goes below 0.
+    showImage(currentImageIndex);
+});
+nextButton.addEventListener('click', function() {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    showImage(currentImageIndex);
+});
+// show the first image initially
+showImage(currentImageIndex);
+
+// make it loop automatically every 3 seconds
+setInterval(function() {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    showImage(currentImageIndex);
+}, 5000);
+
+// fetch sample function
+async function fetchSample() {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users');
+    const data = await response.json();
+    console.log(data);
+
+    // print the data to the user
+    const apiDataDiv = document.getElementById('api-data');
+    apiDataDiv.innerHTML = "<h4>Users:</h4><ul>" + data.map(user => `<li>${user.name} (${user.email})</li>`).join('') + "</ul>";
+    // why is map used and nor forEach
+    // map is used here because we want to create a new array of HTML strings for each user, 
+    // which we then join together to create the final HTML. 
+    // forEach does not return a new array, it just executes a function for each element in the array, 
+    // so it would not be suitable for this use case.
+}
+fetchSample();
+
+const fetchSample2 = async () => {
+    
+};
+
+
+
+
+
+
+// async function fetchSample() {
+//     try {
+//         const response = await fetch('https://jsonplaceholder.typicode.com/users');
+//         const data = await response.json();
+//         console.log(data);
+//     } catch (error) {
+//         console.error('Error fetching sample data:', error);
+//     }
+// }
