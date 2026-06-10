@@ -153,22 +153,38 @@ async function fetchSample() {
     const data = await response.json();
     console.log(data);
 
-    // print the data to the user
     const apiDataDiv = document.getElementById('api-data');
     apiDataDiv.innerHTML = "<h4>Users:</h4><ul>" + data.map(user => `<li>${user.name} (${user.email})</li>`).join('') + "</ul>";
-    // why is map used and nor forEach
-    // map is used here because we want to create a new array of HTML strings for each user, 
-    // which we then join together to create the final HTML. 
-    // forEach does not return a new array, it just executes a function for each element in the array, 
-    // so it would not be suitable for this use case.
 }
 fetchSample();
 
-const fetchSample2 = async () => {
-    
+async function fetchPost(id) {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+    const post = await response.json();
+    console.log(post);
+}
+// fetchPost(1);
+
+const createUser = async () => {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users', {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value
+            })
+        });
+        const newUser = await response.json();
+        console.log(newUser);
+        
+    } catch (error) {
+        console.error('Error creating user:', error);
+    }
 };
-
-
+createUser();
 
 
 
